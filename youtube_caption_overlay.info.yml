@@ -1,0 +1,7 @@
+name: 'Remedy YouTube Caption Overlay'
+type: module
+description: 'Overlays custom SRT/VTT caption files on embedded YouTube videos for ADA/WCAG compliance.'
+core_version_requirement: ^10 || ^11
+package: Media
+dependencies:
+  - drupal:file

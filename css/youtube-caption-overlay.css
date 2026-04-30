@@ -1,0 +1,305 @@
+/**
+ * @file
+ * Styles for Remedy YouTube Caption Overlay.
+ */
+
+/* Field wrapper — contains the responsive video and caption data. */
+.yco-field-wrapper {
+  max-width: 560px;
+  width: 100%;
+}
+
+/* Outer player shell for video, overlay controls, and transcript. */
+.yco-player {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Responsive 16:9 aspect ratio wrapper. */
+.yco-responsive-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+.yco-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Container wrapping the YouTube iframe (added by JS). */
+.yco-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Caption display overlay — full width at the bottom. */
+.yco-caption-display {
+  position: absolute;
+  bottom: 8px;
+  left: 4px;
+  right: 4px;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Caption text span — small, full-width, max 2 lines. */
+.yco-caption-text {
+  font-size: var(--yco-font-size, 11px);
+  background: var(--yco-background, rgba(0, 0, 0, 0.65));
+  color: var(--yco-color, #FFFFFF);
+  padding: 1px 4px;
+  line-height: 1.3;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border-radius: 2px;
+  font-family: "YouTube Noto", Roboto, Arial, Helvetica, sans-serif;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* Empty caption text should not display the background. */
+.yco-caption-text:empty {
+  display: none;
+}
+
+/* Controls bar below the video. */
+.yco-controls {
+  display: flex;
+  gap: 8px;
+  padding: 6px 0;
+}
+
+/* CC toggle button. */
+.yco-cc-toggle {
+  background: #333;
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 4px 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+.yco-cc-toggle:hover {
+  background: #555;
+}
+
+.yco-cc-toggle:focus-visible {
+  outline: 2px solid #4A90D9;
+  outline-offset: 2px;
+}
+
+/* Active state — captions are on. */
+.yco-cc-toggle.yco-cc-active {
+  border-color: #fff;
+}
+
+/* Transcript toggle button. */
+.yco-transcript-toggle {
+  background: #333;
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+.yco-transcript-toggle:hover {
+  background: #555;
+}
+
+.yco-transcript-toggle:focus-visible {
+  outline: 2px solid #4A90D9;
+  outline-offset: 2px;
+}
+
+.yco-transcript-toggle[aria-pressed="true"] {
+  border-color: #fff;
+}
+
+/* Transcript panel. */
+.yco-transcript {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 8px;
+  margin-top: 4px;
+  background: #fafafa;
+}
+
+/* Individual transcript cue. */
+.yco-transcript-cue {
+  display: flex;
+  gap: 12px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+/* Timestamp in transcript. */
+.yco-transcript-time {
+  color: #666;
+  font-size: 0.85em;
+  font-family: monospace;
+  white-space: nowrap;
+  min-width: 40px;
+}
+
+/* Caption text in transcript. */
+.yco-transcript-text {
+  flex: 1;
+  font-size: 0.9em;
+}
+
+/* Active cue highlighting. */
+.yco-transcript-cue.yco-transcript-active {
+  background-color: #e8f0fe;
+  font-weight: 600;
+}
+
+/* --- Modal / Lightbox context --- */
+
+/* When inside a Bootstrap modal, the container fills the ratio wrapper. */
+.yco-container--modal {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Direct embed iframe inside modal fills the container. */
+.yco-container--modal iframe.yco-direct-embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Controls inside modal need light-on-dark treatment. */
+.modal .yco-controls {
+  padding: 8px 0;
+  justify-content: center;
+}
+
+/* Transcript inside modal. */
+.modal .yco-transcript {
+  background: #222;
+  border-color: #444;
+  color: #eee;
+}
+
+.modal .yco-transcript-time {
+  color: #aaa;
+}
+
+.modal .yco-transcript-cue.yco-transcript-active {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Fullscreen button. */
+.yco-fs-toggle {
+  background: #333;
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: inherit;
+}
+
+.yco-fs-toggle:hover {
+  background: #555;
+}
+
+.yco-fs-toggle:focus-visible {
+  outline: 2px solid #4A90D9;
+  outline-offset: 2px;
+}
+
+/* --- Fullscreen support --- */
+.yco-player:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+}
+
+.yco-player:fullscreen .yco-container {
+  flex: 1 1 auto;
+  display: block;
+  min-height: 0;
+}
+
+.yco-player:fullscreen .yco-responsive-wrapper {
+  padding-bottom: 0;
+  height: auto;
+}
+
+.yco-player:fullscreen iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.yco-player:fullscreen .yco-controls {
+  flex: 0 0 auto;
+  justify-content: center;
+  padding: 8px;
+  background: #000;
+}
+
+.yco-player:fullscreen .yco-caption-text {
+  font-size: 1.5em;
+  padding: 4px 8px;
+}
+
+.yco-player:fullscreen .yco-caption-display {
+  bottom: 16px;
+}
+
+/* --- High contrast mode --- */
+@media (prefers-contrast: high) {
+  .yco-caption-text {
+    background: #000;
+    color: #fff;
+    border: 2px solid #fff;
+  }
+
+  .yco-cc-toggle,
+  .yco-transcript-toggle,
+  .yco-fs-toggle {
+    border: 2px solid #fff;
+  }
+
+  .yco-transcript-cue.yco-transcript-active {
+    background-color: #000;
+    color: #fff;
+    outline: 2px solid #fff;
+  }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .yco-transcript-cue {
+    transition: none;
+  }
+}

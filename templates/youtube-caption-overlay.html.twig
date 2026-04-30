@@ -1,0 +1,26 @@
+{#
+  Renders a YouTube video player with caption overlay data.
+  The JS behavior finds the iframe inside this wrapper, wraps it
+  in a .yco-container, and attaches synchronized captions.
+#}
+<div class="yco-field-wrapper yco-player"
+     data-video-id="{{ youtube_video_id }}"
+     data-caption-url="{{ caption_file_url }}"
+     data-caption-format="{{ caption_format }}"
+     data-caption-font-size="{{ caption_font_size }}"
+     data-caption-background="{{ caption_background }}"
+     data-caption-color="{{ caption_color }}"
+     data-show-transcript="{{ show_transcript ? 'true' : 'false' }}">
+  <div class="yco-responsive-wrapper">
+    <iframe src="https://www.youtube.com/embed/{{ youtube_video_id|url_encode }}?enablejsapi=1&fs=0&origin={{ base_url|url_encode }}"
+            width="560"
+            height="315"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            title="{{ 'YouTube video player with captions'|t }}">
+    </iframe>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+# Environment / credentials
+.env
+.env.*
+!.env.example
+service-account*.json
+firebase-service-account*.json
+credentials*.json
+client_secret*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+.npmrc
+.yarnrc
+
+# Dependencies / build output
+vendor/
+node_modules/
+dist/
+build/
+
+# Drupal / local runtime
+sites/*/files/
+private/
+tmp/
+cache/
+logs/
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Agent/tool local state
+entities.json
+mempalace.yaml
+openmemory.md
+.claude/
+.cursor/
+.playwright-mcp/
+
+# Clean seed repo exclusions
+*.md
+docs/
+doc/
+knowledge-base/
+knowledge_base/
+*knowledge-base*/
+tests/
+test/
+__tests__/
+test_*.py
+*_test.py
+*.test.*
+*.spec.*
+!README.md
+
+# Screenshots / demo recordings — not part of source
+screenshots/

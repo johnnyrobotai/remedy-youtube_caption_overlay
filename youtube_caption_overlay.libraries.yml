@@ -1,0 +1,13 @@
+youtube_caption_overlay:
+  version: 1.x
+  css:
+    component:
+      css/youtube-caption-overlay.css: {}
+  js:
+    js/srt-parser.js: {}
+    js/vtt-parser.js: {}
+    js/youtube-caption-overlay.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once

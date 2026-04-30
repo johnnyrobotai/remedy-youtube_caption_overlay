@@ -1,0 +1,45 @@
+field.storage_settings.youtube_caption_overlay:
+  type: mapping
+  label: 'Remedy YouTube Caption Overlay storage settings'
+
+field.field_settings.youtube_caption_overlay:
+  type: mapping
+  label: 'Remedy YouTube Caption Overlay field settings'
+
+field.value.youtube_caption_overlay:
+  type: mapping
+  label: 'Remedy YouTube Caption Overlay field value'
+  mapping:
+    youtube_video_id:
+      type: string
+      label: 'YouTube Video ID'
+    caption_fid:
+      type: integer
+      label: 'Caption file ID'
+    caption_lang:
+      type: string
+      label: 'Caption language code'
+    caption_label:
+      type: string
+      label: 'Caption label'
+
+field.widget.settings.youtube_caption_overlay_widget:
+  type: mapping
+  label: 'Remedy YouTube Caption Overlay widget settings'
+
+field.formatter.settings.youtube_caption_overlay_formatter:
+  type: mapping
+  label: 'Remedy YouTube Caption Overlay formatter settings'
+  mapping:
+    caption_font_size:
+      type: string
+      label: 'Caption font size'
+    caption_background:
+      type: string
+      label: 'Caption background color'
+    caption_color:
+      type: string
+      label: 'Caption text color'
+    show_transcript:
+      type: boolean
+      label: 'Show transcript panel'

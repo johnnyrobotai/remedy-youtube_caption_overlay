@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Provides a field type for overlaying captions on YouTube embeds.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function youtube_caption_overlay_theme() {
+  return [
+    'youtube_caption_overlay' => [
+      'variables' => [
+        'youtube_video_id' => NULL,
+        'caption_file_url' => NULL,
+        'caption_format' => NULL,
+        'caption_font_size' => '1.2em',
+        'caption_background' => 'rgba(0, 0, 0, 0.75)',
+        'caption_color' => '#FFFFFF',
+        'show_transcript' => FALSE,
+        'base_url' => '',
+      ],
+      'template' => 'youtube-caption-overlay',
+    ],
+  ];
+}

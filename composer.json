@@ -1,0 +1,37 @@
+{
+    "name": "remedy/youtube-caption-overlay",
+    "description": "Drupal module that overlays custom SRT/VTT captions on embedded YouTube videos.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "drupal/coder": "^8.3",
+        "squizlabs/php_codesniffer": "^3.10",
+        "symfony/yaml": "^6.4 || ^7.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "lint:php": "find . -type f \\( -name '*.php' -o -name '*.module' -o -name '*.install' -o -name '*.inc' -o -name '*.profile' -o -name '*.theme' \\) -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+        "lint:yaml": "php scripts/lint-yaml.php",
+        "lint:js": "find js -type f -name '*.js' -print0 | xargs -0 -n1 node --check",
+        "check:module": "php scripts/check-module-files.php",
+        "check:deploy": "php scripts/check-deploy-files.php",
+        "ci": [
+            "@lint:php",
+            "@lint:yaml",
+            "@lint:js",
+            "@check:module",
+            "@check:deploy"
+        ],
+        "drupalcs": "phpcs",
+        "drupalcbf": "phpcbf"
+    }
+}

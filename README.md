@@ -79,6 +79,11 @@ The module's directory and machine name remain `youtube_caption_overlay` (the su
    ```
 
    The `.info.yml` file stem (`youtube_caption_overlay.info.yml`) and the parent folder name must match.
+   If cloning directly, set the destination folder explicitly:
+
+   ```bash
+   git clone <repo-url> modules/custom/youtube_caption_overlay
+   ```
 
 2. Enable the module:
 
@@ -98,11 +103,43 @@ The module's directory and machine name remain `youtube_caption_overlay` (the su
 
 Before deploying to production:
 
-1. Deploy only the module files needed by Drupal. Local agent files such as `AGENTS.md`, `CLAUDE.md`, and `mempalace.yaml` are not required by the module runtime.
+1. Deploy only the module files needed by Drupal. Runtime files are the root `youtube_caption_overlay.*` module files, `src/`, `config/schema/`, `js/`, `css/`, and `templates/`. Development files such as `.github/`, `scripts/`, `composer.json`, `phpcs.xml.dist`, local agent files, and README content are excluded from generated archives through `.gitattributes`.
 2. Enable the module in a Drupal 10 or 11 environment and rebuild caches with `drush cr`.
 3. Confirm the public file system is configured and writable, since caption uploads are stored at `public://youtube_captions` (path is hardcoded in the widget).
 4. Test one page with a formatter-rendered video, one page with an existing direct YouTube iframe, and one Bootstrap modal/lightbox embed if the site uses modals.
 5. Verify captions, CC toggle, transcript toggle, and custom fullscreen in the target production theme.
+
+To build a runtime-only archive from the repository:
+
+```bash
+git archive --format=tar --prefix=youtube_caption_overlay/ HEAD > youtube_caption_overlay.tar
+```
+
+Extract that archive into the Drupal site's `modules/custom/` directory.
+
+## Development and CI
+
+The repository includes lightweight CI checks that do not require a live Drupal site. GitHub Actions provisions PHP, Composer, and Node, then runs:
+
+- PHP syntax checks for `.php`, `.module`, `.install`, `.inc`, `.profile`, and `.theme` files
+- YAML parsing for `.yml` and `.yaml` files
+- JavaScript syntax checks with `node --check`
+- Drupal module presence checks for required metadata, library assets, plugin files, and install documentation
+- Deployment export checks so only Drupal runtime files are included in generated archives
+
+Local development requires PHP, Composer, and Node:
+
+```bash
+composer install
+composer run ci
+```
+
+Optional Drupal coding standards tooling is available without bootstrapping Drupal:
+
+```bash
+composer run drupalcs
+composer run drupalcbf
+```
 
 ## Usage
 

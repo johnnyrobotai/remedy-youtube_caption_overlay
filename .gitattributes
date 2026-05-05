@@ -7,6 +7,7 @@
 /.gitattributes export-ignore
 /composer.json export-ignore
 /composer.lock export-ignore
+/LICENSE export-ignore
 /phpcs.xml.dist export-ignore
 /README.md export-ignore
 /AGENTS.md export-ignore
